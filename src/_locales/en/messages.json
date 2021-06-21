@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "NativeVideo",
+        "description": "The display name for the extension."
+    },
+    "extension_description": {
+        "message": "NativeVideo exposes links to raw video streams from web pages.",
+        "description": "Description of what the extension does."
+    }
+}
