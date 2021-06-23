@@ -28,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BA1CA2D22683A2D3004EAAAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BADF3DFF2683912E0046409B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA1CA2CE2683A2B6004EAAAC;
+			remoteInfo = "npm install";
+		};
 		BADF3E1A2683912F0046409B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BADF3DFF2683912E0046409B /* Project object */;
@@ -225,6 +232,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		BA1CA2CE2683A2B6004EAAAC /* npm install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "run build";
+			buildConfigurationList = BA1CA2CF2683A2B6004EAAAC /* Build configuration list for PBXLegacyTarget "npm install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/npm;
+			buildWorkingDirectory = /Users/bret/Developer/NativeVideo;
+			dependencies = (
+			);
+			name = "npm install";
+			passBuildSettingsInEnvironment = 1;
+			productName = "npm install";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		BADF3E062683912E0046409B /* NativeVideo */ = {
 			isa = PBXNativeTarget;
@@ -292,6 +316,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BA1CA2D32683A2D3004EAAAC /* PBXTargetDependency */,
 			);
 			name = "NativeVideo Extension";
 			productName = "NativeVideo Extension";
@@ -307,6 +332,9 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					BA1CA2CE2683A2B6004EAAAC = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					BADF3E062683912E0046409B = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -340,6 +368,7 @@
 				BADF3E182683912F0046409B /* NativeVideoTests */,
 				BADF3E232683912F0046409B /* NativeVideoUITests */,
 				BADF3E2E2683912F0046409B /* NativeVideo Extension */,
+				BA1CA2CE2683A2B6004EAAAC /* npm install */,
 			);
 		};
 /* End PBXProject section */
@@ -423,6 +452,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BA1CA2D32683A2D3004EAAAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA1CA2CE2683A2B6004EAAAC /* npm install */;
+			targetProxy = BA1CA2D22683A2D3004EAAAC /* PBXContainerItemProxy */;
+		};
 		BADF3E1B2683912F0046409B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BADF3E062683912E0046409B /* NativeVideo */;
@@ -452,6 +486,33 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BA1CA2D02683A2B6004EAAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = MV52DXHA2M;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BA1CA2D12683A2B6004EAAAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = MV52DXHA2M;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		BADF3E4C2683912F0046409B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,6 +805,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BA1CA2CF2683A2B6004EAAAC /* Build configuration list for PBXLegacyTarget "npm install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA1CA2D02683A2B6004EAAAC /* Debug */,
+				BA1CA2D12683A2B6004EAAAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BADF3E022683912E0046409B /* Build configuration list for PBXProject "NativeVideo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
