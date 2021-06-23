@@ -1,12 +1,16 @@
 import resolve from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
+import builtins from 'rollup-plugin-node-builtins'
+import globals from 'rollup-plugin-node-globals'
 
 function plugins () {
   return [
     resolve({ browser: true }),
     commonjs(),
-    json()
+    json(),
+    globals(),
+    builtins()
   ]
 }
 
@@ -25,7 +29,8 @@ export default [
       entryFileNames: '[name]/[name].js',
       format: 'es',
       chunkFileNames: 'chunks/[format]-[name]-[hash].js',
-      sourcemap: true
+      sourcemap: true,
+      globals: 'browser'
     }
   },
   {
