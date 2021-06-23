@@ -4,7 +4,7 @@
 
 body {
     padding: 10px;
-
+    min-width: 300px;
     font-family: system-ui;
     text-align: center;
 }

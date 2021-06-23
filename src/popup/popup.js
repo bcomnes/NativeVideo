@@ -32,14 +32,19 @@ export const Popup = Component(() => {
 
   return html`
   <div>
-    <div>Videos:</div>
     <ul>
       ${videoUrls
         ? videoUrls.map(v => html.for(v)`
           <li>
-            <a href=${v.href}>
-              ${v.href}
-            </a>
+
+            <div>
+              <a href=${v.href}>
+                ${v.itag
+                  ? html`<div>${v.itag} ${v.container} ${v.qualityLabel} ${v.hasVideo && !v.hasAudio ? 'Video Only' : ''} ${!v.hasVideo && v.hasAudio ? 'Audio Only' : ''}</div>`
+                  : v.href
+                }
+              </a>
+            </div>
           </li>
         `)
         : null

@@ -28,12 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BA1CA2D22683A2D3004EAAAC /* PBXContainerItemProxy */ = {
+		BA1CA2CB26839535004EAAAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BADF3DFF2683912E0046409B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BA1CA2CE2683A2B6004EAAAC;
-			remoteInfo = "npm install";
+			remoteGlobalIDString = BA1CA2C726839516004EAAAC;
+			remoteInfo = "npm installl";
 		};
 		BADF3E1A2683912F0046409B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -233,19 +233,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		BA1CA2CE2683A2B6004EAAAC /* npm install */ = {
+		BA1CA2C726839516004EAAAC /* npm installl */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "run build";
-			buildConfigurationList = BA1CA2CF2683A2B6004EAAAC /* Build configuration list for PBXLegacyTarget "npm install" */;
+			buildArgumentsString = install;
+			buildConfigurationList = BA1CA2CA26839516004EAAAC /* Build configuration list for PBXLegacyTarget "npm installl" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/npm;
 			buildWorkingDirectory = /Users/bret/Developer/NativeVideo;
 			dependencies = (
 			);
-			name = "npm install";
+			name = "npm installl";
 			passBuildSettingsInEnvironment = 1;
-			productName = "npm install";
+			productName = "npm installl";
 		};
 /* End PBXLegacyTarget section */
 
@@ -316,7 +316,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				BA1CA2D32683A2D3004EAAAC /* PBXTargetDependency */,
+				BA1CA2CC26839535004EAAAC /* PBXTargetDependency */,
 			);
 			name = "NativeVideo Extension";
 			productName = "NativeVideo Extension";
@@ -332,7 +332,7 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
-					BA1CA2CE2683A2B6004EAAAC = {
+					BA1CA2C726839516004EAAAC = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					BADF3E062683912E0046409B = {
@@ -368,7 +368,7 @@
 				BADF3E182683912F0046409B /* NativeVideoTests */,
 				BADF3E232683912F0046409B /* NativeVideoUITests */,
 				BADF3E2E2683912F0046409B /* NativeVideo Extension */,
-				BA1CA2CE2683A2B6004EAAAC /* npm install */,
+				BA1CA2C726839516004EAAAC /* npm installl */,
 			);
 		};
 /* End PBXProject section */
@@ -452,10 +452,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BA1CA2D32683A2D3004EAAAC /* PBXTargetDependency */ = {
+		BA1CA2CC26839535004EAAAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA1CA2CE2683A2B6004EAAAC /* npm install */;
-			targetProxy = BA1CA2D22683A2D3004EAAAC /* PBXContainerItemProxy */;
+			target = BA1CA2C726839516004EAAAC /* npm installl */;
+			targetProxy = BA1CA2CB26839535004EAAAC /* PBXContainerItemProxy */;
 		};
 		BADF3E1B2683912F0046409B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -486,7 +486,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BA1CA2D02683A2B6004EAAAC /* Debug */ = {
+		BA1CA2C826839516004EAAAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -501,7 +501,7 @@
 			};
 			name = Debug;
 		};
-		BA1CA2D12683A2B6004EAAAC /* Release */ = {
+		BA1CA2C926839516004EAAAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -805,11 +805,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA1CA2CF2683A2B6004EAAAC /* Build configuration list for PBXLegacyTarget "npm install" */ = {
+		BA1CA2CA26839516004EAAAC /* Build configuration list for PBXLegacyTarget "npm installl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BA1CA2D02683A2B6004EAAAC /* Debug */,
-				BA1CA2D12683A2B6004EAAAC /* Release */,
+				BA1CA2C826839516004EAAAC /* Debug */,
+				BA1CA2C926839516004EAAAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
