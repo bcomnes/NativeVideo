@@ -1,5 +1,3 @@
-import { getInfo } from 'ytdl-core/lib/info.js'
-
 function getBrowser () {
   if (window.browser) return window.browser
   else {
@@ -17,8 +15,11 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const videoTags = document.querySelectorAll('video')
     const sourceTags = document.querySelectorAll('source')
     const videoSrcs = [...sourceTags, ...videoTags].filter(n => !!n.src).map(node => ({ href: node.src }))
-    console.log(videoSrcs)
-    getYoutubeVideos.then((moreVideos) => sendResponse(videoSrcs))
+    getYoutubeVideos().then(moreVideos => {
+      console.log(moreVideos)
+      sendResponse([...moreVideos, ...videoSrcs])
+    }).catch(console.error)
+
     return true
   }
 
@@ -27,9 +28,25 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 async function getYoutubeVideos () {
   if (window.location.host.includes('youtube.com')) {
+    const { getInfo } = require('../polyfills/ytdl')
     const info = await getInfo(window.location.href)
-    console.log(info)
-    return []
+
+    if (info.formats) {
+      return info.formats.map(f => ({
+        href: f.url,
+        itag: f.itag,
+        mimeType: f.mimeType,
+        qualityLabel: f.qualityLabel,
+        hasVideo: f.hasVideo,
+        hasAudio: f.hasAudio,
+        container: f.container,
+        codecs: f.codecs,
+        videoCodec: f.videoCodec,
+        audioCodec: f.audioCodec
+      }))
+    } else {
+      return []
+    }
   } else {
     return []
   }
