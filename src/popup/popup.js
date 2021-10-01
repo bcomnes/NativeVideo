@@ -30,17 +30,27 @@ export const Popup = Component(() => {
 
   if (loading) return html`<div>Loading...</div>`
 
+  async function replaceVideo (src) {
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true })
+    const currentTabId = get(tabs, '[0].id')
+    const results = await browser.tabs.sendMessage(currentTabId, { replaceYoutubeVideo: { src } })
+    console.log(results)
+  }
+
   return html`
   <div>
     <ul>
       ${videoUrls
-        ? videoUrls.map(v => html.for(v)`
+        ? videoUrls.filter(v => (v.hasAudio && v.hasVideo) || (v.hasAudi && v.container === 'mp4')).map(v => html.for(v)`
           <li>
 
             <div>
               <a href=${v.href}>
                 ${v.itag
-                  ? html`<div>${v.itag} ${v.container} ${v.qualityLabel} ${v.hasVideo && !v.hasAudio ? 'Video Only' : ''} ${!v.hasVideo && v.hasAudio ? 'Audio Only' : ''}</div>`
+                  ? html`
+                    <span>${v.itag} ${v.container} ${v.qualityLabel} ${v.hasVideo && !v.hasAudio ? 'Video Only' : ''} ${!v.hasVideo && v.hasAudio ? 'Audio Only' : ''}</span>
+                    <button onclick=${() => { replaceVideo(v.href) }}>Replace</button>
+                    `
                   : v.href
                 }
               </a>

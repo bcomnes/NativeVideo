@@ -239,7 +239,7 @@
 			buildConfigurationList = BA1CA2CA26839516004EAAAC /* Build configuration list for PBXLegacyTarget "npm installl" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/local/bin/npm;
+			buildToolPath = /opt/homebrew/bin/npm;
 			buildWorkingDirectory = /Users/bret/Developer/NativeVideo;
 			dependencies = (
 			);
@@ -330,7 +330,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					BA1CA2C726839516004EAAAC = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -497,6 +497,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PATH = "$PATH:/opt/homebrew/bin:/opt/homebrew/sbin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -509,6 +510,7 @@
 				DEVELOPMENT_TEAM = MV52DXHA2M;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PATH = "$PATH:/opt/homebrew/bin:/opt/homebrew/sbin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -632,6 +634,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "safari/NativeVideo Extension/NativeVideo_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MV52DXHA2M;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -653,6 +656,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "safari/NativeVideo Extension/NativeVideo_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MV52DXHA2M;
 				ENABLE_HARDENED_RUNTIME = YES;

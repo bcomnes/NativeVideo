@@ -13,7 +13,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
     "uland": "^0.10.0",
-    "webextension-polyfill": "^0.8.0",
+    "webextension-polyfill": "0.8.0",
     "ytdl-core": "^4.8.2"
   },
   "devDependencies": {

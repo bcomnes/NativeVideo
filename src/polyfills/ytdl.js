@@ -12410,8 +12410,9 @@ exports.cleanVideoDetails = (videoDetails, info) => {
 
   // Use more reliable `lengthSeconds` from `playerMicroformatRenderer`.
   videoDetails.lengthSeconds =
-    info.player_response.microformat &&
-    info.player_response.microformat.playerMicroformatRenderer.lengthSeconds;
+    (info.player_response.microformat &&
+    info.player_response.microformat.playerMicroformatRenderer.lengthSeconds) ||
+    info.player_response.videoDetails.lengthSeconds;
   return videoDetails;
 };
 
@@ -12512,6 +12513,8 @@ const BASE_URL = 'https://www.youtube.com/watch?v=';
 exports.cache = new Cache();
 exports.cookieCache = new Cache(1000 * 60 * 60 * 24);
 exports.watchPageCache = new Cache();
+// Cache for cver used in getVideoInfoPage
+let cver = '2.20210622.10.00';
 
 
 // Special error class used to determine if an error is unrecoverable,
@@ -12554,8 +12557,8 @@ exports.getBasicInfo = async(id, options) => {
   };
   let info = await pipeline([id, options], validate, retryOptions, [
     getWatchHTMLPage,
-    //getWatchJSONPage,
-    //getVideoInfoPage,
+    getWatchJSONPage,
+    getVideoInfoPage,
   ]);
 
   Object.assign(info, {
@@ -12745,7 +12748,7 @@ const parseJSON = (source, varName, json) => {
 
 
 const findJSON = (source, varName, body, left, right, prependJSON) => {
-  let jsonStr = body.split("ytInitialPlayerResponse = {")[1].split("}}};")[0] += "}}}";
+  let jsonStr = utils.between(body, left, right);
   if (!jsonStr) {
     throw Error(`Could not find ${varName} in ${source}`);
   }
@@ -12767,7 +12770,7 @@ const getWatchJSONPage = async(id, options) => {
   let cookie = reqOptions.headers.Cookie || reqOptions.headers.cookie;
   reqOptions.headers = Object.assign({
     'x-youtube-client-name': '1',
-    'x-youtube-client-version': '2.20201203.06.00',
+    'x-youtube-client-version': cver,
     'x-youtube-identity-token': exports.cookieCache.get(cookie || 'browser') || '',
   }, reqOptions.headers);
 
@@ -12801,13 +12804,14 @@ const getWatchHTMLPage = async(id, options) => {
   let body = await getWatchHTMLPageBody(id, options);
   let info = { page: 'watch' };
   try {
+    cver = utils.between(body, '{"key":"cver","value":"', '"}');
     info.player_response = findJSON('watch.html', 'player_response',
-      body, /\bytInitialPlayerResponse\s*=\s*\{/i, '\n', '{');
+      body, /\bytInitialPlayerResponse\s*=\s*\{/i, '</script>', '{');
   } catch (err) {
     let args = findJSON('watch.html', 'player_response', body, /\bytplayer\.config\s*=\s*{/, '</script>', '{');
     info.player_response = findPlayerResponse('watch.html', args);
   }
-  info.response = findJSON('watch.html', 'response', body, /\bytInitialData("\])?\s*=\s*\{/i, '\n', '{');
+  info.response = findJSON('watch.html', 'response', body, /\bytInitialData("\])?\s*=\s*\{/i, '</script>', '{');
   info.html5player = getHTML5player(body);
   return info;
 };
@@ -12819,6 +12823,8 @@ const VIDEO_EURL = 'https://youtube.googleapis.com/v/';
 const getVideoInfoPage = async(id, options) => {
   const url = new URL(`https://${INFO_HOST}${INFO_PATH}`);
   url.searchParams.set('video_id', id);
+  url.searchParams.set('c', 'TVHTML5');
+  url.searchParams.set('cver', `7${cver.substr(1)}`);
   url.searchParams.set('eurl', VIDEO_EURL + id);
   url.searchParams.set('ps', 'default');
   url.searchParams.set('gl', 'US');
@@ -13248,13 +13254,13 @@ const validQueryDomains = new Set([
   'music.youtube.com',
   'gaming.youtube.com',
 ]);
-const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube.com\/(embed|v|shorts)\/)/;
+const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/;
 exports.getURLVideoID = link => {
   const parsed = new URL(link);
   let id = parsed.searchParams.get('v');
   if (validPathDomains.test(link) && !id) {
     const paths = parsed.pathname.split('/');
-    id = paths[paths.length - 1];
+    id = parsed.host === 'youtu.be' ? paths[1] : paths[2];
   } else if (parsed.hostname && !validQueryDomains.has(parsed.hostname)) {
     throw Error('Not a YouTube domain');
   }
@@ -13512,7 +13518,7 @@ module.exports={
     "video",
     "download"
   ],
-  "version": "4.8.2",
+  "version": "4.9.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-ytdl-core.git"
