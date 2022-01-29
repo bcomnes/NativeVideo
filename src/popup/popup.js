@@ -41,7 +41,7 @@ export const Popup = Component(() => {
   <div>
     <ul>
       ${videoUrls
-        ? videoUrls.filter(v => (v.hasAudio && v.hasVideo) || (v.hasAudi && v.container === 'mp4')).map(v => html.for(v)`
+        ? videoUrls.map(v => html.for(v)`
           <li>
 
             <div>
