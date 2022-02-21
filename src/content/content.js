@@ -23,6 +23,13 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true
   }
 
+  if (message.replaceYoutubeVideo) {
+    if (window.location.host.includes('youtube.com')) {
+      document.querySelector('#player-container').innerHTML = `<video style="height: 100%; width: auto;" controls src="${message.replaceYoutubeVideo.src}" />`
+    }
+    return true
+  }
+
   return false
 })
 
