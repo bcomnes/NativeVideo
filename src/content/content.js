@@ -1,3 +1,5 @@
+import { querySelectorAllDeep } from 'query-selector-shadow-dom'
+
 function getBrowser () {
   if (window.browser) return window.browser
   else {
@@ -12,9 +14,14 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Received request: ', message)
 
   if (message.fetchVideos) {
-    const videoTags = document.querySelectorAll('video')
-    const sourceTags = document.querySelectorAll('source')
-    const videoSrcs = [...sourceTags, ...videoTags].filter(n => !!n.src).map(node => ({ href: node.src }))
+    const searchArray = []
+    const videoTags = querySelectorAllDeep('video')
+    const audioTags = querySelectorAllDeep('audio')
+    const sourceTags = querySelectorAllDeep('source')
+    const iframeTags = querySelectorAllDeep('iframe')
+    searchArray.push(...sourceTags, ...audioTags, ...videoTags, ...iframeTags)
+
+    const videoSrcs = searchArray.filter(n => !!n.src).map(node => ({ href: node.src }))
     getYoutubeVideos().then(moreVideos => {
       console.log(moreVideos)
       sendResponse([...moreVideos, ...videoSrcs])
